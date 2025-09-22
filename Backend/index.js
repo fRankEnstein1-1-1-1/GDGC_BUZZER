@@ -24,4 +24,4 @@ io.on("connection", (socket,teamName) => {
   });
 });
 
-server.listen(4000, () => console.log("Server running on http://localhost:4000"));
+server.listen("https://buzzer-backend.onrender.com", () => console.log("Server running on render"));

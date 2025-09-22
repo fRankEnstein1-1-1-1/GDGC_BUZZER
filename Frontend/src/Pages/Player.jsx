@@ -43,6 +43,7 @@ export default function Player() {
       placeholder="Enter team name"
       value={team}
       onChange={(e) => setTeam(e.target.value)}
+      required
     />
     <button className="player-join-btn" onClick={handleJoin}>
       Join
