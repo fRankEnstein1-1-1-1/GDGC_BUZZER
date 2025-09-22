@@ -4,9 +4,10 @@ import { useNavigate } from "react-router-dom";
 import "./Player.css";
 
 export default function Player() {
-  const socket = io("http://localhost:4000");
+  const socket = io("https://buzzer-backend.onrender.com", {
+  transports: ["websocket"], // ensures reliable connection
+});
   const [team, setTeam] = useState("");
-  const navigate = useNavigate();
   const [joined, setJoined] = useState(false);
   const [showVideo, setShowVideo] = useState(true); // new state
 
@@ -18,7 +19,7 @@ export default function Player() {
 
   const handleJoin = () => {
     setJoined(true);
-    setShowVideo(true); // play video first
+    setShowVideo(true); 
   };
 
   return (

@@ -9,19 +9,19 @@ html, body {
   width: 100%;
 }
 
-/* Root wrapper for player page */
+
 .player-root {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center; /* center join form / buzz button */
-  height: calc(100vh - 110px); /* subtract navbar height */
+  justify-content: center; 
+  height: calc(100vh - 110px); 
   width: 100vw;
-  background-color: #000000; /* gray-100 */
+  background-color: #000000; 
   padding: 1rem;
 }
 
-/* ✅ Navbar (copied from Landing.css for consistency) */
+
 .nav {
   border-bottom: 2px solid gold;
   display: flex;
@@ -59,7 +59,7 @@ html, body {
 .player-join-btn {
   width: 100%;
   max-width: 400px;
-  background-color: #2563eb; /* blue-600 */
+  background-color: #2563eb; 
   color: white;
   padding: 12px;
   border-radius: 10px;
@@ -71,7 +71,7 @@ html, body {
 .player-buzz-btn {
   width: 192px;
   height: 192px;
-  background-color: #dc2626; /* red-600 */
+  background-color: #dc2626; 
   color: white;
   border-radius: 50%;
   font-size: 1.8rem;
@@ -91,10 +91,10 @@ html, body {
   top: 0;
   left: 0;
   width: 100vw;          /* full viewport width */
-  height: 100vh;         /* full viewport height */
-  object-fit: cover;     /* crop & fill like a background */
-  z-index: 9999;         /* make sure it stays above other content */
-  background: black;     /* in case video has aspect ratio gaps */
+  height: 100vh;         
+  object-fit: cover;    
+  z-index: 9999;         
+  background: black;     
 }
 .video-title-top {
   position: fixed;
