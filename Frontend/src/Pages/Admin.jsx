@@ -3,7 +3,7 @@ import { io } from "socket.io-client";
 import "./Admin.css"; // import styles
 
 export default function Admin() {
- const socket = io("https://buzzer-backend.onrender.com", {
+ const socket = io("https://gdgc-buzzer.onrender.com", {
   transports: ["websocket"],
   withCredentials:true
 });

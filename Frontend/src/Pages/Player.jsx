@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import "./Player.css";
 
 export default function Player() {
-  const socket = io("https://buzzer-backend.onrender.com", {
+  const socket = io("https://gdgc-buzzer.onrender.com", {
   transports: ["websocket"], 
   withCredentials:true// ensures reliable connection
 });
