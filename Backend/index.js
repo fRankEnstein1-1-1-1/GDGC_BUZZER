@@ -1,47 +1,32 @@
-const express = require("express");
-const http = require("http");
-const { Server } = require("socket.io");
+import express from "express";
+import http from "http";
+import { Server } from "socket.io";
+import cors from "cors";
 
 const app = express();
 const server = http.createServer(app);
 
 const io = new Server(server, {
   cors: {
-    origin: "*", // allow all domains
-    methods: ["GET", "POST"],
-  },
+    origin: "*",
+    methods: ["GET", "POST"]
+  }
 });
 
-let firstClick = null;
+app.get("/", (req, res) => {
+  res.send("Backend running ✅");
+});
 
 io.on("connection", (socket) => {
   console.log("User connected");
 
-  // send current winner if admin refreshes
-  if (firstClick) {
-    socket.emit("winner", firstClick);
-  }
-
-  socket.on("buzz", (teamName) => {
-    if (!firstClick) {
-      firstClick = teamName;
-      io.emit("winner", teamName);
-    }
-  });
-
-  socket.on("reset", () => {
-    firstClick = null;
-    io.emit("reset");
+  socket.on("buzz", (team) => {
+    io.emit("buzzed", team);
   });
 
   socket.on("disconnect", () => {
     console.log("User disconnected");
   });
-});
-
-// ✅ simple route for Render health check
-app.get("/", (req, res) => {
-  res.send("Buzzer backend is running ✅");
 });
 
 const PORT = process.env.PORT || 4000;
