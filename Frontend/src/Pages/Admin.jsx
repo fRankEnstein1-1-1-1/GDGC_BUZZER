@@ -4,7 +4,8 @@ import "./Admin.css"; // import styles
 
 export default function Admin() {
  const socket = io("https://buzzer-backend.onrender.com", {
-  transports: ["websocket"]
+  transports: ["websocket"],
+  withCredentials:true
 });
 
   const [winner, setWinner] = useState("Waiting...");

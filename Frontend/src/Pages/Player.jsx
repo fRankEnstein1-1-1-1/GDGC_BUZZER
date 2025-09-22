@@ -5,7 +5,8 @@ import "./Player.css";
 
 export default function Player() {
   const socket = io("https://buzzer-backend.onrender.com", {
-  transports: ["websocket"], // ensures reliable connection
+  transports: ["websocket"], 
+  withCredentials:true// ensures reliable connection
 });
   const [team, setTeam] = useState("");
   const [joined, setJoined] = useState(false);

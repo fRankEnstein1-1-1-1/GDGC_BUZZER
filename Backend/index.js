@@ -4,12 +4,20 @@ const { Server } = require("socket.io");
 
 const app = express();
 const server = http.createServer(app);
-const io = new Server(server, { cors: { origin: "*" } });
+
+const io = new Server(server, {
+  cors: { origin: "*" },
+});
 
 let firstClick = null;
 
-io.on("connection", (socket,teamName) => {
-  console.log (` User connected`);
+io.on("connection", (socket) => {
+  console.log("User connected");
+
+  // Send current winner if admin refreshes
+  if (firstClick) {
+    socket.emit("winner", firstClick);
+  }
 
   socket.on("buzz", (teamName) => {
     if (!firstClick) {
@@ -24,4 +32,4 @@ io.on("connection", (socket,teamName) => {
   });
 });
 
-server.listen("https://buzzer-backend.onrender.com", () => console.log("Server running on render"));
+server.listen(4000, () => console.log(`Server running on port 4000`))
