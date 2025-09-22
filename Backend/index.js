@@ -6,7 +6,10 @@ const app = express();
 const server = http.createServer(app);
 
 const io = new Server(server, {
-  cors: { origin: "*" },
+  cors: {
+    origin: "*", // allow all domains
+    methods: ["GET", "POST"],
+  },
 });
 
 let firstClick = null;
@@ -14,7 +17,7 @@ let firstClick = null;
 io.on("connection", (socket) => {
   console.log("User connected");
 
-  // Send current winner if admin refreshes
+  // send current winner if admin refreshes
   if (firstClick) {
     socket.emit("winner", firstClick);
   }
@@ -30,6 +33,16 @@ io.on("connection", (socket) => {
     firstClick = null;
     io.emit("reset");
   });
+
+  socket.on("disconnect", () => {
+    console.log("User disconnected");
+  });
 });
 
-server.listen(4000, () => console.log(`Server running on port 4000`))
+// ✅ simple route for Render health check
+app.get("/", (req, res) => {
+  res.send("Buzzer backend is running ✅");
+});
+
+const PORT = process.env.PORT || 4000;
+server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
