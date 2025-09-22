@@ -3,7 +3,10 @@ import { io } from "socket.io-client";
 import "./Admin.css"; // import styles
 
 export default function Admin() {
-  const socket = io("http://localhost:4000");
+ const socket = io("https://buzzer-backend.onrender.com", {
+  transports: ["websocket"]
+});
+
   const [winner, setWinner] = useState("Waiting...");
 
   useEffect(() => {
