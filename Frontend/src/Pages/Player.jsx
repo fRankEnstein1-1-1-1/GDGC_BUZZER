@@ -15,10 +15,10 @@ export default function Player() {
     const now = new Date();
 
     // Format: DD/MM/YYYY HH:MM:SS.ms
-    const date = now.toLocaleDateString("en-GB"); 
+    //const date = now.toLocaleDateString("en-GB"); 
     const time =
-     // now.toLocaleTimeString("en-GB", { hour12: false }) +
-     // "." +
+      now.toLocaleTimeString("en-GB", { hour12: false }) +
+      "." +
       now.getMilliseconds().toString().padStart(3, "0");
 
     const formatted = `${time}`;
