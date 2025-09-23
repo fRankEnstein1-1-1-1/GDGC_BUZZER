@@ -6,7 +6,7 @@ import cors from "cors";
 const app = express();
 
 app.use(cors({
-  origin: "*",
+  origin: ["https://gdgc-buzzer.vercel.app"],
   methods: ["GET", "POST"],
   credentials: true
 }));
