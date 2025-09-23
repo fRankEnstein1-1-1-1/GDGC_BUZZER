@@ -1,3 +1,4 @@
+/* Reset */
 * {
   margin: 0;
   padding: 0;
@@ -7,21 +8,11 @@
 html, body {
   height: 100%;
   width: 100%;
+  background-color: #000000;
+  font-family: Arial, sans-serif;
 }
 
-
-.player-root {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center; 
-  height: calc(100vh - 110px); 
-  width: 100vw;
-  background-color: #000000; 
-  padding: 1rem;
-}
-
-
+/* Navbar */
 .nav {
   border-bottom: 2px solid gold;
   display: flex;
@@ -32,6 +23,7 @@ html, body {
   gap: 15px;
   height: 110px;
   background-color: black;
+  padding: 0 1rem;
 }
 
 .logo img {
@@ -39,9 +31,22 @@ html, body {
   width: 60px;
 }
 
-.logotext h3 {
-  font-size: 1.2rem;
+.logotext h2 {
+  font-size: 1.5rem;
   font-weight: bold;
+}
+
+/* Root container */
+.player-root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - 110px);
+  width: 100vw;
+  background-color: #000000;
+  padding: 1rem;
+  color: white;
 }
 
 /* Input box */
@@ -53,25 +58,33 @@ html, body {
   border-radius: 8px;
   font-size: 1.1rem;
   margin-bottom: 16px;
+  background-color: #111;
+  color: white;
 }
 
 /* Join button */
 .player-join-btn {
   width: 100%;
   max-width: 400px;
-  background-color: #2563eb; 
+  background-color: #2563eb;
   color: white;
   padding: 12px;
   border-radius: 10px;
   font-size: 1.1rem;
+  font-weight: bold;
   cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.player-join-btn:hover {
+  background-color: #1d4ed8;
 }
 
 /* Buzz button */
 .player-buzz-btn {
   width: 192px;
   height: 192px;
-  background-color: #dc2626; 
+  background-color: #dc2626;
   color: white;
   border-radius: 50%;
   font-size: 1.8rem;
@@ -79,30 +92,52 @@ html, body {
   box-shadow: 0px 4px 12px rgba(0,0,0,0.3);
   margin: 16px;
   cursor: pointer;
-  transition: transform 0.1s ease-in-out;
+  transition: transform 0.1s ease-in-out, background 0.2s ease;
+  border: none;
 }
 
 .player-buzz-btn:active {
   transform: scale(0.95);
 }
 
-.fullscreen-video {
-  position: fixed;       /* cover the whole viewport */
-  top: 0;
-  left: 0;
-  width: 100vw;          /* full viewport width */
-  height: 100vh;         
-  object-fit: cover;    
-  z-index: 9999;         
-  background: black;     
+.player-buzz-btn:hover {
+  background-color: #b91c1c;
 }
-.video-title-top {
-  position: fixed;
-  top: 20px;
+
+/* Press log */
+.press-log {
+  margin-top: 20px;
+  background: #111;
+  border: 1px solid gold;
+  padding: 16px;
+  border-radius: 12px;
   width: 100%;
+  max-width: 500px;
+  color: gold;
   text-align: center;
+}
+
+.press-log h3 {
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+  color: gold;
+}
+
+.press-log ul {
+  list-style: none;
+  max-height: 200px;
+  overflow-y: auto;
+  padding: 0;
+  margin: 0;
+}
+
+.press-log li {
+  padding: 6px 0;
+  font-size: 1rem;
   color: white;
-  font-size: 2rem;
-  font-weight: bold;
-  z-index: 10000; /* higher than video */
+  border-bottom: 1px solid #333;
+}
+
+.press-log li:last-child {
+  border-bottom: none;
 }

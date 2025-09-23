@@ -1,77 +1,82 @@
 // Player.jsx
 
 import { useState } from "react";
-import { io } from "socket.io-client";
-
 import "./Player.css";
 
 export default function Player() {
-  // Change the URL to your localhost and port (e.g., http://localhost:4000)
-  const socket = io("https://gdgcbuzzer-production.up.railway.app", {
-  transports: ["websocket", "polling"],
-  withCredentials: true
-});
-
-  
   const [team, setTeam] = useState("");
   const [joined, setJoined] = useState(false);
-  const [showVideo, setShowVideo] = useState(true);
+  const [presses, setPresses] = useState([]);
 
   const buzz = () => {
     const sound = new Audio("/buzzer.mp3");
     sound.play();
-    socket.emit("buzz", team);
+
+    const now = new Date();
+
+    // Format: DD/MM/YYYY HH:MM:SS.ms
+    const date = now.toLocaleDateString("en-GB"); 
+    const time =
+      now.toLocaleTimeString("en-GB", { hour12: false }) +
+      "." +
+      now.getMilliseconds().toString().padStart(3, "0");
+
+    const formatted = `${date} ${time}`;
+
+    setPresses((prev) => [...prev, { team, time: formatted }]);
   };
 
   const handleJoin = () => {
+    if (team.trim() === "") return;
     setJoined(true);
-    setShowVideo(true); 
   };
 
   return (
-<>
-<div className="nav">
-<div className="logo">
-<img src="/gdgcl.jpg" alt="Logo" />
-</div>
-<div className="logotext">
-<h2>Player</h2>
-</div>
-</div>
-<div className="player-root">
-{!joined ? (
-<div className="w-full max-w-sm flex flex-col items-center">
-<input
-className="player-input"
-placeholder="Enter team name"
-value={team}
-onChange={(e) => setTeam(e.target.value)}
-required
-/>
-<button className="player-join-btn" onClick={handleJoin}>
-Join
-</button>
-</div>
-) : showVideo ? (
-<>
-<h2 className="video-title-top">Smash your buzzer like this:</h2>
-<video
-className="fullscreen-video"
-autoPlay
-onEnded={() => setShowVideo(false)}
->
-<source src="/intro.mp4" type="video/mp4" />
-Your browser does not support the video tag.
-</video>
-</>
-) : (
-<div className="flex flex-col items-center">
-<button className="player-buzz-btn" onClick={buzz}>
-BUZZ!
-</button>
-</div>
-)}
-</div>
-</>
+    <>
+      <div className="nav">
+        <div className="logo">
+          <img src="/gdgcl.jpg" alt="Logo" />
+        </div>
+        <div className="logotext">
+          <h2>Player</h2>
+        </div>
+      </div>
+
+      <div className="player-root">
+        {!joined ? (
+          <div className="w-full max-w-sm flex flex-col items-center">
+            <input
+              className="player-input"
+              placeholder="Enter team name"
+              value={team}
+              onChange={(e) => setTeam(e.target.value)}
+              required
+            />
+            <button className="player-join-btn" onClick={handleJoin}>
+              Join
+            </button>
+          </div>
+        ) : (
+          <div className="flex flex-col items-center">
+            <button className="player-buzz-btn" onClick={buzz}>
+              BUZZ!
+            </button>
+
+            {presses.length > 0 && (
+              <div className="press-log">
+                <h3>Buzzer Press Log</h3>
+                <ul>
+                  {presses.map((p, idx) => (
+                    <li key={idx}>
+                      {p.team} — {p.time}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
+        )}
+      </div>
+    </>
   );
 }
