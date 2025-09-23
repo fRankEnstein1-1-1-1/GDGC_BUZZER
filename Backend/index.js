@@ -6,7 +6,7 @@ import cors from "cors";
 const app = express();
 
 app.use(cors({
-  origin: ["https://gdgc-buzzer-frtgpvjie-adithya-menons-projects-5bed7bbe.vercel.app"],
+  origin: ["https://gdgc-buzzer.vercel.app"],
   methods: ["GET", "POST"],
   credentials: true
 }));
@@ -15,7 +15,7 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
   cors: {
-    origin: ["https://gdgc-buzzer-frtgpvjie-adithya-menons-projects-5bed7bbe.vercel.app"],
+    origin: ["https://gdgc-buzzer.vercel.app"],
     methods: ["GET", "POST"],
     credentials: true
   }
