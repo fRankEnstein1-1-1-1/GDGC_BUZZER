@@ -7,7 +7,7 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
   cors: {
-    origin: "*",
+    origin: "https://gdgc-buzzer-frtgpvjie-adithya-menons-projects-5bed7bbe.vercel.app/",
     methods: ["GET", "POST"],
   },
 });
