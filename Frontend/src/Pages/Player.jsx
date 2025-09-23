@@ -7,7 +7,7 @@ import "./Player.css";
 
 export default function Player() {
   // Change the URL to your localhost and port (e.g., http://localhost:4000)
-  const socket = io("http://localhost:4000", { 
+  const socket = io("gdgcbuzzer-production.up.railway.app", { 
     transports: ["websocket"], 
     withCredentials:true
   });
