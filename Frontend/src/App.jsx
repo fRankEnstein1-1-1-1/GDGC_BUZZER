@@ -1,4 +1,4 @@
-import {BrowserRouter , Routes,Route} from 'react-router-dom'
+import {HashRouter , Routes,Route} from 'react-router-dom'
 import Player from './Pages/Player'
 import Admin from './Pages/Admin'
 import Landing from './Pages/Landing'
@@ -6,13 +6,13 @@ function App()
 {
 
   return (
-<BrowserRouter>
+<HashRouter>
 <Routes>
   <Route path='/' element = {<Landing/>} />
   <Route path='/admin' element = {<Admin/>} />
   <Route path='/player' element = {<Player/>} />
 </Routes>
-</BrowserRouter>
+</HashRouter>
 )
 }
 export default App
