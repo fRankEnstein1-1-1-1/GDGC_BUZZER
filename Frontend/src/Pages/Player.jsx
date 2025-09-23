@@ -17,11 +17,11 @@ export default function Player() {
     // Format: DD/MM/YYYY HH:MM:SS.ms
     const date = now.toLocaleDateString("en-GB"); 
     const time =
-      now.toLocaleTimeString("en-GB", { hour12: false }) +
-      "." +
+     // now.toLocaleTimeString("en-GB", { hour12: false }) +
+     // "." +
       now.getMilliseconds().toString().padStart(3, "0");
 
-    const formatted = `${date} ${time}`;
+    const formatted = `${time}`;
 
     setPresses((prev) => [...prev, { team, time: formatted }]);
   };
