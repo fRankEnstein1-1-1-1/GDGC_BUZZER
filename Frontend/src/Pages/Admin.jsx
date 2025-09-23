@@ -7,8 +7,7 @@ import "./Admin.css"; // import styles
 export default function Admin() {
   // Change the URL to your localhost and port (e.g., http://localhost:4000)
   const socket = io("https://gdgcbuzzer-production.up.railway.app", {
-    transports: ["websocket"],
-    withCredentials: true,
+   
   });
 
   const [winner, setWinner] = useState("Waiting...");
